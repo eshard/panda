@@ -13,7 +13,8 @@
  * @brief Information and offsets related to `struct task_struct`.
  */
 struct task_info {
-	int task_offset;			/**< Offset of task_struct in the thread_info struct. */
+	target_ulong per_cpu_offset_0;
+	target_ulong current_task_addr;
 #ifdef CPU_DEFS_H
 	/* included from qemu code */
 	/** The address of the `task_struct` of `init`. Can be used to traverse the `task_struct` list. */

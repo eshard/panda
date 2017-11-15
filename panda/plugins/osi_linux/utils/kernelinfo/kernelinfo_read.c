@@ -68,9 +68,10 @@ int read_kernelinfo(gchar const *file, gchar const *group, struct kernelinfo *ki
 	if (!g_key_file_has_group(keyfile, group_real)) goto error;
 
 	/* read task information */
-	READ_INFO_INT(task.task_offset, err, err_fs);
 	READ_INFO_INT(task.tasks_offset, err, err_task);
 	READ_INFO_INT(task.size, err, err_task);
+	READ_INFO_UINT64(task.per_cpu_offset_0, err, err_task);
+	READ_INFO_INT(task.current_task_addr, err, err_task);
 	//READ_INFO_INT(task.list_offset, err, err_task);
 	READ_INFO_INT(task.pid_offset, err, err_task);
 	READ_INFO_INT(task.tgid_offset, err, err_task);

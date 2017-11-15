@@ -121,17 +121,6 @@ static inline _retType2 _name(CPUState* env, PTR _paramName) { \
 
 
 
-/* ******************************************************************
- Offset getters are defined below. Only the getters used by the
- plugin have been defined. See kernelinfo.conf to see what additional
- getters can be added.
-****************************************************************** */
-
-/**
- * @brief Retrieves the task_struct address using the thread_info address.
- */
-IMPLEMENT_OFFSET_GET(get_task_struct, thread_info_addr, PTR, ki.task.task_offset, 0)
-
 /**
  * @brief Retrieves the thread group address from task_struct.
  * If the thread group address points back to itself, then the task_struct

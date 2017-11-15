@@ -66,7 +66,6 @@ int init_module(void)
 	struct vm_area_struct vmastruct;
 	struct dentry dentrystruct;
 	struct file filestruct;
-	struct thread_info threadinfostruct;
 	struct files_struct filesstruct; /* mind the extra 's' :-P */
 	struct fdtable fdtablestruct;
 	struct vfsmount vfsmountstruct;
@@ -78,7 +77,6 @@ int init_module(void)
 	struct dentry *ds_p;
 	struct file *fs_p;
 	struct fdtable *fdt_p;
-	struct thread_info *ti_p;
 	struct files_struct *fss_p;
 	struct vfsmount *vfsmnt_p;
 
@@ -95,7 +93,6 @@ int init_module(void)
 	vma_p = &vmastruct;
 	ds_p = &dentrystruct;
 	fs_p = &filestruct;
-	ti_p = &threadinfostruct;
 	fss_p = &filesstruct;
 	fdt_p = &fdtablestruct;
 	vfsmnt_p = &vfsmountstruct;
@@ -106,8 +103,11 @@ int init_module(void)
 	printk(KERN_INFO "task.size = %zu\n", sizeof(init_task));
 	printk(KERN_INFO "#task.init_addr = 0x%08lX\n", (unsigned long)ts_p);
 	printk(KERN_INFO "task.init_addr = %lu\n", (unsigned long)ts_p);
+	printk(KERN_INFO "#task.per_cpu_offset_0 = 0x%08lX\n", (unsigned long)__per_cpu_offset[0]);
+	printk(KERN_INFO "task.per_cpu_offset_0 = %lu\n", (unsigned long)__per_cpu_offset[0]);
+	printk(KERN_INFO "#task.current_task_addr = 0x%08lX\n", (unsigned long)&current_task);
+	printk(KERN_INFO "task.current_task_addr = %lu\n", (unsigned long)&current_task);
 
-	PRINT_OFFSET(ti_p,	task,			"task");
 	PRINT_OFFSET(ts_p,	tasks,			"task");
 	PRINT_OFFSET(ts_p,	pid,			"task");
 	PRINT_OFFSET(ts_p,	tgid,			"task");
