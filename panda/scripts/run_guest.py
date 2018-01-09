@@ -175,6 +175,9 @@ def create_recording(qemu_path, qcow, snapshot, command, copy_directory,
         # then run that setup.sh script first (good for scriptst that need to
         # prep guest environment before script runs
         qemu.run_console("{}/setup.sh &> /dev/null || true".format(pipes.quote(copy_directory)))
+
+        qemu.run_console("echo 0 > /proc/sys/kernel/randomize_va_space")
+
         # Important that we type command into console before recording starts and only
         # hit enter once we've started the recording.
         progress("Running command inside guest.")
